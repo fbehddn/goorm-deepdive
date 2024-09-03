@@ -47,6 +47,12 @@ public class User {
         this.age = age;
     }
 
+    public User() {
+        this.email = "admin";
+        this.password = "admin";
+        this.name = "dongwoo you";
+    }
+
     @Override
     public String toString() {
         return "User{" +
