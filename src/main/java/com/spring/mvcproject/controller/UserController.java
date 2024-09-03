@@ -12,18 +12,39 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/user")
 public class UserController {
 
-    //http://localhost:8080/user/signup
-    @RequestMapping("/signup")
-    public String signup(Model model) {
+//    //http://localhost:8080/user/signup
+//    @RequestMapping("/signup")
+//    public String signup(Model model) {
+//        User user = new User();
+//        model.addAttribute("user", user);
+//        return "signup";
+//    }
+//
+//    @RequestMapping(value = "/signup", method = RequestMethod.POST)
+//    @ResponseBody
+//    public String signup(@ModelAttribute User user) {
+//        System.out.println("user = " + user);
+//        return "success";
+//    }
+
+    //http://localhost:8080/user/login
+    @RequestMapping("/login")
+    public String login(Model model) {
         User user = new User();
         model.addAttribute("user", user);
-        return "signup";
+        return "login";
     }
 
-    @RequestMapping(value = "/signup",method = RequestMethod.POST)
-    @ResponseBody
-    public String signup(@ModelAttribute User user) {
-        System.out.println("user = " + user);
-        return "success";
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String login(@ModelAttribute User user, Model model) {
+        User predefinedUser = new User();
+
+        if (predefinedUser.getEmail().equals(user.getEmail()) &&
+            predefinedUser.getPassword().equals(user.getPassword())){
+            model.addAttribute("name", user.getName());
+            return "loginSuccess";
+        }
+
+        return "redirect:/user/login";
     }
 }
