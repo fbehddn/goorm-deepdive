@@ -4,6 +4,7 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/day01/pom.xml" />
         <option value="$PROJECT_DIR$/mvcproject/pom.xml" />
         <option value="$PROJECT_DIR$/mvcproject2/pom.xml" />
@@ -11,6 +12,13 @@
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_21" default="true" project-jdk-name="openjdk-21" project-jdk-type="JavaSDK">
+=======
+        <option value="$PROJECT_DIR$/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="17" project-jdk-type="JavaSDK">
+>>>>>>> 144105529626d0b1ca099023cef92a5890993ccd
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>
