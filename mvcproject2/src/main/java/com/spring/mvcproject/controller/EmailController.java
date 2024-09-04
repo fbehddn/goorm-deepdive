@@ -2,6 +2,7 @@ package com.spring.mvcproject.controller;
 
 import com.spring.mvcproject.domain.SendEmailRequest;
 import com.spring.mvcproject.service.EmailServiceClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -9,10 +10,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/email")
 public class EmailController {
+
+    @Autowired
+    private EmailServiceClient emailServiceClient;
+
     @RequestMapping(value = "/sendEmail")
     @ResponseBody
     public String sendEmail() {
-        EmailServiceClient emailServiceClient = new EmailServiceClient();
+//        EmailServiceClient emailServiceClient = new EmailServiceClient();
         SendEmailRequest sendEmailRequest = generateEmailRequest();
         emailServiceClient.sendEmail(sendEmailRequest);
         return "Success";
