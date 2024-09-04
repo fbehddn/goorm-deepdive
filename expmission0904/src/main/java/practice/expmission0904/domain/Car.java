@@ -7,14 +7,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class Car {
 
-    private final Engine engine;
-
     @Autowired
-    public Car(@Qualifier("v6Engine") Engine engine) {
+    @Qualifier("V6")
+    private Engine engine;
+
+    public void setEngine(Engine engine) {
         this.engine = engine;
     }
 
     public void startRace() {
-        engine.start();
+        if (engine != null) {
+            engine.start();
+        } else System.out.println("엔진이 할당되지 않음");
     }
 }
