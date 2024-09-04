@@ -2,7 +2,7 @@ package practice.expmission0904.domain;
 
 import org.springframework.stereotype.Component;
 
-@Component("v6Engine")
+@Component("V6")
 public class V6Engine implements Engine {
 
     @Override

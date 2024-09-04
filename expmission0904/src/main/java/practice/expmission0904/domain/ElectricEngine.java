@@ -2,7 +2,7 @@ package practice.expmission0904.domain;
 
 import org.springframework.stereotype.Component;
 
-@Component("electricEngine")
+@Component("Electric")
 public class ElectricEngine implements Engine{
     @Override
     public void start() {
