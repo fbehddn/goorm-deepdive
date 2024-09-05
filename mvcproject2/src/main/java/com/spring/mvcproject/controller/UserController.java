@@ -36,16 +36,21 @@ public class UserController {
         return "login";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(@ModelAttribute User user, Model model) {
-        User predefinedUser = new User();
+    @PostMapping("/login")
+    public String login(
+            @RequestParam String email, @RequestParam String password,
+            Model model
+    ) {
+        System.out.println("email = " + email);
+        System.out.println("password = " + password);
 
-        if (predefinedUser.getEmail().equals(user.getEmail()) &&
-            predefinedUser.getPassword().equals(user.getPassword())){
-            model.addAttribute("name", user.getName());
-            return "loginSuccess";
+        if ("test@test.com".equals(email) && "1234".equals(password)) {
+            loggedUserManagementService.setUsername("testUserName");
+            model.addAttribute("message", "로그인 성공!!!");
+            return "redirect:/main";
+        } else {
+            model.addAttribute("message", "로그인 실패");
         }
-
-        return "redirect:/user/login";
+        return "login";
     }
 }
