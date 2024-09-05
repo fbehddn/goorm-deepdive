@@ -1,26 +1,23 @@
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%--
+  Created by IntelliJ IDEA.
+  User: sisim
+  Date: 2024-09-05
+  Time: 오전 10:21
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page isELIgnored="false" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Login</title>
+    <title>Login Form</title>
 </head>
 <body>
-<h2>Login Form</h2>
-<form:form method="POST" action="/user/login" modelAttribute="user">
-    <table>
-        <tr>
-            <td>Email:</td>
-            <td><form:input path="email" /></td>
-        </tr>
-        <tr>
-            <td>Password:</td>
-            <td><form:password path="password" /></td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <input type="submit" value="Login" />
-            </td>
-        </tr>
-    </table>
-</form:form>
+<form action="/user/login" method="post">
+    이메일 : <input type="text" name="email" /><br>
+    비밀번호 : <input type="password" name="password" /> <br>
+    <button type="submit">로그인</button>
+</form>
+
+<h2>${message}</h2>
 </body>
 </html>
