@@ -56,4 +56,11 @@ public class QuizController {
         model.addAttribute("total", questions.length);
         return "quiz-result";
     }
+
+    // 퀴즈 재시작 (세션 초기화)
+    @GetMapping("/restart")
+    public String restartQuiz() {
+        quizSession.reset();
+        return "redirect:/quiz";
+    }
 }
