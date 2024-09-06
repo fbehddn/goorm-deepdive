@@ -1,9 +1,9 @@
-package practice.h2rest.controller;
+package practice.h2rest.user.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import practice.h2rest.model.User;
-import practice.h2rest.repository.UserRepository;
+import practice.h2rest.user.model.User;
+import practice.h2rest.user.repository.UserRepository;
 
 import java.util.List;
 

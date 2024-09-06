@@ -1,4 +1,4 @@
-package practice.h2rest.model;
+package practice.h2rest.user.model;
 
 import jakarta.persistence.*;
 
