@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="practice.expmission0910.mapper.BookMapper">
+
+    <!-- 모든 책 조회 -->
+    <select id="findAll" resultType="practice.expmission0910.dto.BookDto">
+        SELECT id,
+               title,
+               author,
+               publisher,
+               published_date
+        FROM book;
+    </select>
+
+    <!-- 특정 ID로 책 조회 -->
+    <select id="findById" parameterType="long" resultType="practice.expmission0910.dto.BookDto">
+        SELECT
+            id,
+            title,
+            author,
+            publisher,
+            published_date
+        FROM book
+        WHERE id = #{id}
+    </select>
+
+</mapper>
