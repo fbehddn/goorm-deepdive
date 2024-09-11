@@ -3,7 +3,7 @@ package practice.restapi_ex.dto;
 import lombok.*;
 
 @Data
-public class User {
-    private String id;
+public class UserDto {
     private String name;
+    private String email;
 }

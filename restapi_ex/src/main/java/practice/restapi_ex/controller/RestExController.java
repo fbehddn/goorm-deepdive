@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import practice.restapi_ex.dto.ItemDto;
 import practice.restapi_ex.dto.ResponseDto;
-import practice.restapi_ex.dto.User;
+import practice.restapi_ex.dto.UserDto;
 import practice.restapi_ex.service.RestExService;
 
 @RestController
@@ -45,9 +45,9 @@ public class RestExController {
 
     // @RequestBody: 사용 데이터를 객체로 바인딩
     @PostMapping("/body")
-    public String testRequestBody(@RequestBody User user) {
-        log.info("RequestBody: " + user);
-        return "RequestBody: " + user;
+    public String testRequestBody(@RequestBody UserDto userDto) {
+        log.info("RequestBody: " + userDto);
+        return "RequestBody: " + userDto;
     }
 
     @GetMapping("/item")
