@@ -27,4 +27,26 @@
         WHERE id = #{id}
     </select>
 
+    <!-- 도서 등록 -->
+    <insert id="save" parameterType="practice.expmission0910.dto.BookDto">
+        INSERT INTO book (id, title, author, publisher, published_date)
+        VALUES (#{id}, #{title}, #{author}, #{publisher}, #{published_date});
+    </insert>
+
+    <!-- 도서 수정 -->
+    <update id="update" parameterType="practice.expmission0910.dto.BookDto">
+        UPDATE book
+        SET title = #{title},
+            author = #{author},
+            publisher = #{publisher},
+            published_date = #{publishedDate}
+        WHERE id = #{id};
+    </update>
+
+    <!-- 도서 삭제 -->
+    <delete id="deleteById" parameterType="long">
+        DELETE FROM book
+        WHERE id = #{id};
+    </delete>
+
 </mapper>
