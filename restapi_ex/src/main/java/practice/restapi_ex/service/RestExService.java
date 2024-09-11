@@ -1,20 +1,23 @@
 package practice.restapi_ex.service;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import practice.restapi_ex.dto.ItemDto;
+import practice.restapi_ex.entity.ItemEntity;
 import practice.restapi_ex.mapper.ExMapper;
+import practice.restapi_ex.repository.ItemRepository;
 
 import java.util.HashMap;
 
 @Service
 @Slf4j
 public class RestExService {
-    private final ExMapper exMapper;
+    @Autowired
+    private ExMapper exMapper;
 
-    public RestExService(ExMapper exMapper) {
-        this.exMapper = exMapper;
-    }
+    @Autowired
+    private ItemRepository itemRepository;
 
     public boolean registerItem(ItemDto itemDto) {
         //DB insert
@@ -23,7 +26,13 @@ public class RestExService {
 //        map.put("name",itemDto.getName());
 //
 //        exMapper.registerItem(map);
-        exMapper.registerItem(itemDto);
+        //exMapper.registerItem(itemDto);
+
+        ItemEntity itemEntity = new ItemEntity();
+        itemEntity.setId(itemDto.getId());
+        itemEntity.setName(itemDto.getName());
+
+        itemRepository.save(itemEntity);
 
         log.info("service: register...");
 
@@ -32,14 +41,16 @@ public class RestExService {
     }
 
     public ItemDto getItem(String id) {
-        HashMap<String, Object> paramMap = new HashMap<>();
-        paramMap.put("id", id);
+//        HashMap<String, Object> paramMap = new HashMap<>();
+//        paramMap.put("id", id);
+//
+//        HashMap<String,Object> res = exMapper.findById(paramMap);
 
-        HashMap<String,Object> res = exMapper.findById(paramMap);
+        ItemEntity itemEntity = itemRepository.findById(id).get();
 
         ItemDto itemDto = new ItemDto();
-        itemDto.setId(res.get("ID").toString());
-        itemDto.setName(res.get("NAME").toString());
+        itemDto.setId(itemEntity.getId());
+        itemDto.setName(itemEntity.getName());
 
         return itemDto;
     }
