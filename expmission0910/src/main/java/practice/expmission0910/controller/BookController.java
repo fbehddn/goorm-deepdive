@@ -1,10 +1,7 @@
 package practice.expmission0910.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import practice.expmission0910.dto.BookDto;
 import practice.expmission0910.service.BookService;
 
@@ -26,5 +23,24 @@ public class BookController {
     @GetMapping("/search/{id}")
     public BookDto findById(@PathVariable Long id) {
         return bookService.findById(id);
+    }
+
+    // 도서 등록
+    @PostMapping
+    public void createBook(@RequestBody BookDto bookDto) {
+        bookService.save(bookDto);
+    }
+
+    // 도서 수정
+    @PutMapping("/{id}")
+    public void updateBook(@PathVariable Long id, @RequestBody BookDto bookDto) {
+        bookDto.setId(id);
+        bookService.update(bookDto);
+    }
+
+    // 도서 삭제
+    @DeleteMapping("/{id}")
+    public void deleteBook(@PathVariable Long id) {
+        bookService.deleteById(id);
     }
 }
