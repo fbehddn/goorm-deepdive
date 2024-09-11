@@ -9,4 +9,8 @@ import java.util.List;
 public interface BookMapper {
     List<BookDto> findAll();
     BookDto findById(Long id);
+    void save(BookDto bookDto);
+    void update(BookDto bookDto);
+    void deleteById(Long id);
+
 }
