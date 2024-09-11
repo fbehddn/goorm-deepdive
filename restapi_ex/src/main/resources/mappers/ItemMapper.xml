@@ -10,4 +10,8 @@
         WHERE ID = #{id}
     </select>
 
+    <insert id="registerItem" parameterType="practice.restapi_ex.dto.ItemDto">
+        INSERT INTO ITEM(ID,NAME) VALUES(#{id}, #{name})
+    </insert>
+
 </mapper>

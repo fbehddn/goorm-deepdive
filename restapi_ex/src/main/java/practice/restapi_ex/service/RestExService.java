@@ -18,6 +18,12 @@ public class RestExService {
 
     public boolean registerItem(ItemDto itemDto) {
         //DB insert
+//        HashMap<String,Object> map = new HashMap<>();
+//        map.put("id",itemDto.getId());
+//        map.put("name",itemDto.getName());
+//
+//        exMapper.registerItem(map);
+        exMapper.registerItem(itemDto);
 
         log.info("service: register...");
 
