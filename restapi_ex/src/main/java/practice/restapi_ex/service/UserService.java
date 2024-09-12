@@ -25,6 +25,21 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    @Transactional(rollbackFor = Exception.class)
+    public User createUserWithRollback(UserDto userDto) throws Exception {
+        User user = new User();
+        user.setName(userDto.getName());
+        user.setEmail(userDto.getEmail());
+        userRepository.save(user);
+
+        //강제로 예외 발생 시켜보기
+        if (userDto.getEmail().contains("error")) {
+            throw new Exception("강제 예외 발생");
+        }
+
+        return user;
+    }
+
     //사용자 정보 조회
     @Transactional(readOnly = true)
     public User getUserById(Long id) {

@@ -16,12 +16,9 @@ public class UserController {
 
     // 사용자 생성/등록 API
     @PostMapping
-    public User createUser(@RequestBody UserDto userDto) {
-        User user = new User();
-        user.setName(userDto.getName());
-        user.setEmail(userDto.getEmail());
-
-        return user;
+    public User createUser(@RequestBody UserDto userDto) throws Exception {
+//        return userService.createUser(userDto);
+        return userService.createUserWithRollback(userDto);
     }
 
     // 사용자 조회 API
