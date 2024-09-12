@@ -1,6 +1,5 @@
 package practice.restapi_ex.controller;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,5 +53,39 @@ public class UserControllerTest {
         assertThat(response.getBody().getEmail()).isEqualTo(userDto.getEmail());
 
         System.out.println("[성공] 사용자 생성 테스트 성공");
+    }
+
+    // exp 미션
+    // 사용자 조회 API 테스트
+    // : 데이터베이스에 미리 저장한 사용자를 조회하는 API 를 호출
+    //  올바르게 조회되었는지 검증
+
+    @Test
+    void testGetUserById() {
+        // 1. 테스트할 사용자 DTO 생성
+        System.out.println("[테스트 준비] 데이터베이스에 초기 데이터 세팅하기");
+        UserDto userDto = new UserDto();
+        userDto.setName("Tom");
+        userDto.setEmail("tom@gmail.com");
+
+        // 2. User 객체로 변환하여 DB에 저장
+        User user = new User();
+        user.setName(userDto.getName());
+        user.setEmail(userDto.getEmail());
+        userRepository.save(user);
+
+        // 3. 사용자 조회 API 호출
+        ResponseEntity<User> response = restTemplate.getForEntity(
+                "/user/" + user.getId(),
+                User.class);
+
+        // 4. 응답상태 및 내용검증
+        System.out.println("[검증] 응답 상태 코드 : " + response.getStatusCode());
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(response.getBody()).isNotNull();
+        assertThat(response.getBody().getName()).isEqualTo(userDto.getName());
+        assertThat(response.getBody().getEmail()).isEqualTo(userDto.getEmail());
+
+        System.out.println("[성공] 사용자 조회 테스트 성공");
     }
 }
