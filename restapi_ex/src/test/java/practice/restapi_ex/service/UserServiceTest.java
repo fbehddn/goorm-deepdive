@@ -44,4 +44,21 @@ public class UserServiceTest {
         verify(userRepository, times(1)).save(any(User.class));
 
     }
+
+    @Test
+    void testCreateUserWithRollback() throws Exception{
+        //테스트용 UserDto 준비
+        UserDto userDto = new UserDto();
+        userDto.setName("Tom");
+        userDto.setEmail("error@gmail.com");
+
+        // 모킹된 UserRepository가 동작하도록 설정
+        when(userRepository.save(any(User.class))).thenAnswer(i -> i.getArguments()[0]);
+
+        //예외 발생을 위한 설정
+        assertThrows(Exception.class, () -> userService.createUserWithRollback(userDto));
+
+        // userRepository.save() 호출 검증
+        verify(userRepository, times(1)).save(any(User.class));
+    }
 }
