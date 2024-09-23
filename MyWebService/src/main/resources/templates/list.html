@@ -7,7 +7,6 @@
 <body>
 <h1>게시글 목록</h1>
 <a th:href="@{/logout}">로그아웃</a>
-<span th:text="${nickname} + '님, 환영합니다!'">닉네임</span>
 <hr>
 <ul>
     <li th:each="post : ${posts}">

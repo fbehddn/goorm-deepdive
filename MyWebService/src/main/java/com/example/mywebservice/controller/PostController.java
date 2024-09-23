@@ -1,12 +1,8 @@
 package com.example.mywebservice.controller;
 
 import com.example.mywebservice.dto.PostDto;
-import com.example.mywebservice.entity.User;
 import com.example.mywebservice.service.PostService;
-import com.example.mywebservice.service.UserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
