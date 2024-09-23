@@ -38,8 +38,15 @@ public class PostController {
 
     // 게시글 작성하기: 작성폼
     @GetMapping("/create")
-    public String createForm(Model model) {
-        model.addAttribute("post", new PostDto());
+    public String createForm(Model model, Authentication authentication) {
+        PostDto postDto = new PostDto();
+
+        // 로그인한 사용자의 닉네임 가져오기
+        String email = authentication.getName();
+        User user = (User) userService.loadUserByUsername(email);
+        postDto.setAuthor(user.getNickname()); // 작성자 이름 설정
+
+        model.addAttribute("post", postDto); // 작성폼에 사용할 데이터 모델로 넘기기
         return "create";
     }
 
