@@ -52,7 +52,14 @@ public class PostController {
 
     // 게시글 작성하기: 게시글 등록
     @PostMapping("/create")
-    public String createPost(@ModelAttribute("postDto") PostDto postDto) {
+    public String createPost(@ModelAttribute("postDto") PostDto postDto, Authentication authentication) {
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        Long loggedInUserId = ((User) userDetails).getId();
+
+        // 게시글 작성 시 로그인한 사용자의 ID를 authorId로 설정
+        postDto.setAuthorId(loggedInUserId);
+
+        // PostService에 게시글 저장 요청
         postService.createPost(postDto);
         return "redirect:/posts";
     }
