@@ -66,9 +66,19 @@ public class PostController {
 
     // 게시글 상세 보기
     @GetMapping("/{id}")
-    public String detail(@PathVariable Long id, Model model) {
+    public String detail(@PathVariable Long id, Model model, Authentication authentication) {
         PostDto postDto = postService.getPostById(id).orElseThrow(() -> new RuntimeException("Post not found"));
+
+        // 로그인한 사용자 ID 가져오기
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        Long loggedInUserId = ((User) userDetails).getId();
+
+        // 작성자와 로그인한 사용자가 동일한지 비교
+        boolean isOwner = postDto.getAuthorId().equals(loggedInUserId);
+
         model.addAttribute("post", postDto);
+        model.addAttribute("isOwner", isOwner); // isOwner 값에 따라 수정/삭제 버튼 표시
+
         return "detail";
     }
 
