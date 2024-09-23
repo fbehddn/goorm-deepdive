@@ -15,6 +15,9 @@ public class PostController {
     @Autowired
     private PostService postService;
 
+    @Autowired
+    private UserDetailService userService;
+
     // 게시글 전체 보기
     @GetMapping
     public String list(Model model) {
