@@ -28,11 +28,15 @@ public class User implements UserDetails {
     @Column(name = "password", nullable = false)
     private String password;
 
+    @Column(name = "nickname", nullable = false)
+    private String nickname;
+
     //생성자와 형식이 비슷하지만, 생성자가 아닌 빌더패턴이다
     @Builder
-    public User(String email, String password, String auth) {
+    public User(String email, String password, String nickname, String auth) {
         this.email = email;
         this.password = password;
+        this.nickname = nickname;
     }
 
     @Override
