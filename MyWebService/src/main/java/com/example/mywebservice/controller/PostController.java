@@ -84,9 +84,15 @@ public class PostController {
 
     // 게시글 업데이트: 업데이트폼
     @GetMapping("/{id}/edit")
-    public String editForm(@PathVariable Long id, Model model) {
+    public String editForm(@PathVariable Long id, Model model, Authentication authentication) {
         PostDto postDto = postService.getPostById(id).orElseThrow(() -> new RuntimeException("Post not found"));
-        model.addAttribute("post", postDto);
+
+        // 로그인한 사용자 정보 가져오기
+        String email = authentication.getName();
+        User user = (User) userService.loadUserByUsername(email);
+        postDto.setAuthor(user.getNickname()); // 작성자의 닉네임 설정
+
+        model.addAttribute("post", postDto); // 업데이트폼에 사용할 데이터 모델로 넘기기
         return "edit";
     }
 
