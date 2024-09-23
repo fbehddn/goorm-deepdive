@@ -1,8 +1,12 @@
 package com.example.mywebservice.controller;
 
 import com.example.mywebservice.dto.PostDto;
+import com.example.mywebservice.entity.User;
 import com.example.mywebservice.service.PostService;
+import com.example.mywebservice.service.UserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,9 +24,15 @@ public class PostController {
 
     // 게시글 전체 보기
     @GetMapping
-    public String list(Model model) {
+    public String list(Model model, Authentication authentication) {
         List<PostDto> postDtos = postService.getAllPosts();
         model.addAttribute("posts", postDtos);
+
+        // 로그인된 사용자 정보 추가
+        String email = authentication.getName(); // 로그인된 사용자의 이메일 가져오기
+        User user = (User) userService.loadUserByUsername(email); // 이메일로 사용자 정보 찾기
+        model.addAttribute("nickname", user.getNickname()); // 사용자 닉네임 추가
+
         return "list";
     }
 
