@@ -9,9 +9,15 @@
 <p>작성자: <span th:text="${post.author}">작성자 이름</span></p>
 <p th:text="${post.content}">게시글 내용</p>
 <hr>
-<a th:href="@{/posts/{id}/edit(id=${post.id})}">수정하기</a>
-<form th:action="@{/posts/{id}/delete(id=${post.id})}" method="post">
-    <input type="submit" value="삭제하기" />
-</form>
+
+<div th:if="${isOwner}">
+    <a th:href="@{/posts/{id}/edit(id=${post.id})}">수정하기</a>
+    <form th:action="@{/posts/{id}/delete(id=${post.id})}" method="post" style="display: inline;">
+        <input type="submit" value="삭제하기" />
+    </form>
+</div>
+
+<a th:href="@{/posts}">목록으로 돌아가기</a>
+
 </body>
 </html>
