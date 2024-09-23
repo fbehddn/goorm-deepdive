@@ -20,6 +20,7 @@ public class Post {
     private String title;
     private String content;
     private String author;
+    private Long authorId;
     private LocalDateTime createdAt;
 
     @PrePersist
@@ -27,9 +28,10 @@ public class Post {
         this.createdAt = LocalDateTime.now();
     }
 
-    public Post(String title, String content, String author) {
+    public Post(String title, String content, String author, Long authorId) {
         this.title = title;
         this.content = content;
         this.author = author;
+        this.authorId = authorId;
     }
 }

@@ -18,7 +18,7 @@ public class PostService {
 
     // 게시글 작성하기
     public PostDto createPost(PostDto postDto) {
-        Post post = new Post(postDto.getTitle(), postDto.getContent(), postDto.getAuthor());
+        Post post = new Post(postDto.getTitle(), postDto.getContent(), postDto.getAuthor(), postDto.getAuthorId());
         Post savePost = postRepository.save(post);
 
         return convertToDto(savePost);
@@ -60,6 +60,7 @@ public class PostService {
         postDto.setTitle(post.getTitle());
         postDto.setContent(post.getContent());
         postDto.setAuthor(post.getAuthor());
+        postDto.setAuthorId(post.getAuthorId());
         return postDto;
     }
 }
