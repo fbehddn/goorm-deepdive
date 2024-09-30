@@ -11,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -38,7 +40,7 @@ public class PostService {
     }
 
     public PostViewResponse view(@Valid PostViewRequest postViewRequest) {
-        var entity = postRepository.findById(postViewRequest.getPostId())
+        var entity = postRepository.findFirstByIdAndStatusOrderByIdDesc(postViewRequest.getPostId(),"REGISTERED")
                 .map(it -> {
                     //entity 존재 확인
                     if (!it.getPassword().equals(postViewRequest.getPassword())) {
@@ -59,4 +61,19 @@ public class PostService {
                 .postedAt(entity.getPostedAt())
                 .build();
     }
+
+    public List<PostViewResponse> all() {
+        return postRepository.findAllByStatusOrderByIdDesc("REGISTERED").stream()
+                .map(post -> PostViewResponse.builder()
+                        .id(post.getId())
+                        .userName(post.getUserName())
+                        .email(post.getEmail())
+                        .title(post.getTitle())
+                        .content(post.getContent())
+                        .postedAt(post.getPostedAt())
+                        .build())
+                .collect(Collectors.toList());
+    }
+
+    
 }
