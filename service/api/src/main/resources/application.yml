@@ -1,0 +1,22 @@
+server:
+  port: 8080
+
+# MySQL
+spring:
+  application:
+    name: delivery
+  datasource:
+    url: jdbc:mysql://localhost:3308/delivery?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: qwe123
+
+  # JPA
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
