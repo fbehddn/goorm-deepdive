@@ -17,4 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserOpenApiController {
     private final UserBusiness userBusiness;
 
+    // 사용자 가입 요청
+    @PostMapping("/register")
+    public Api<UserResponse> register(@Valid @RequestBody Api<UserRegisterRequest> request) {
+        var response = userBusiness.register(request.getBody());
+
+//        return response;
+    }
 }
