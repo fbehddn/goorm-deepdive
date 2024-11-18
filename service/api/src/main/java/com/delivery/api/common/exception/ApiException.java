@@ -1,8 +1,10 @@
 package com.delivery.api.common.exception;
 
 import com.delivery.api.common.error.ErrorCodeInterface;
+import lombok.Getter;
 
-public class ApiException extends RuntimeException{
+@Getter
+public class ApiException extends RuntimeException implements ApiExceptionInterface{
 
     private final ErrorCodeInterface errorCodeInterface;
 
