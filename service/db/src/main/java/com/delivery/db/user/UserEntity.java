@@ -7,7 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Table;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -38,7 +38,7 @@ public class UserEntity extends BaseEntity {
     @Column(length = 150, nullable = false)
     private String address;
 
-    private LocalDate registeredAt;
-    private LocalDate unregisteredAt;
-    private LocalDate lastLoginAt;
+    private LocalDateTime registeredAt;
+    private LocalDateTime unregisteredAt;
+    private LocalDateTime lastLoginAt;
 }
