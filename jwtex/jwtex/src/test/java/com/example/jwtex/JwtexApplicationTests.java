@@ -20,7 +20,7 @@ class JwtexApplicationTests {
     void tokenCreate() {
         var claims = new HashMap<String, Object>();
         claims.put("user_id", 7777);
-        LocalDateTime expireAt = LocalDateTime.now().plusMinutes(10);
+        LocalDateTime expireAt = LocalDateTime.now().plusSeconds(30);
 
         var jwtToken = jwtService.createToken(claims, expireAt);
         System.out.println(jwtToken);
@@ -28,7 +28,7 @@ class JwtexApplicationTests {
 
     @Test
     void tokenValidation() {
-
+        var token = "ey1hbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo3Nzc3LCJleHAiOjE3MzIwNjIzNjN9.01t_1D8FOsuwFe2rnAfSgLwtim15qCJXNoVV4CfIPkc";
+        jwtService.validationToken(token);
     }
-
 }
