@@ -1,6 +1,8 @@
 package com.delivery.api.domain.user.business;
 
 import com.delivery.api.common.annotation.Business;
+import com.delivery.api.domain.token.buisness.TokenBusiness;
+import com.delivery.api.domain.token.controller.model.TokenResponse;
 import com.delivery.api.domain.user.controller.model.UserLoginRequest;
 import com.delivery.api.domain.user.controller.model.UserRegisterRequest;
 import com.delivery.api.domain.user.controller.model.UserResponse;
@@ -14,10 +16,14 @@ import lombok.RequiredArgsConstructor;
 public class UserBusiness {
     private final UserService userService;
     private final UserConverter userConverter;
+    private final TokenBusiness tokenBusiness;
 
     /**
-     * 사용자에 대한 가입 처리 로직 1. request dto -> entity (converter) 2. entity -> save (service) 3. save entity -> response dto
-     * (converter) 4. response return
+     * 사용자에 대한 가입 처리 로직
+     * 1. request dto -> entity (converter)
+     * 2. entity -> save (service)
+     * 3. save entity -> response dto
+     * 4. (converter) 4. response return
      */
     public UserResponse register(@Valid UserRegisterRequest request) {
         var entity = userConverter.toEntity(request);
@@ -27,11 +33,17 @@ public class UserBusiness {
     }
 
     /**
-     * 로그인 처리 로직 1. email, password 사용자 체크 2. userEntity 로그인 확인 3. token 생성 => 일단 코드로 확인 4. token response
+     * 로그인 처리 로직
+     * 1. email, password 사용자 체크
+     * 2. userEntity 로그인 확인
+     * 3. token 생성 => 일단 코드로 확인
+     * 4. token response
      */
-    public UserResponse login(@Valid UserLoginRequest request) {
+    public TokenResponse login(@Valid UserLoginRequest request) {
         var userEntity = userService.login(request.getEmail(), request.getPassword());
 
-        return userConverter.toResponse(userEntity);
+        // 사용자가 없으면 throw
+
+        return tokenBusiness.issueToken(userEntity);
     }
 }
