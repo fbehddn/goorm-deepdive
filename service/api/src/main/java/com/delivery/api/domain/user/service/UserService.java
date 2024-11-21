@@ -7,8 +7,10 @@ import com.delivery.db.user.UserEntity;
 import com.delivery.db.user.UserRepository;
 import com.delivery.db.user.enums.UserStatus;
 import jakarta.validation.constraints.NotBlank;
+
 import java.time.LocalDateTime;
 import java.util.Optional;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +37,12 @@ public class UserService {
         ).orElseThrow(() -> new ApiException(UserErrorCode.USER_NOT_FOUND));
     }
 
+    public UserEntity getUserWithThrow(Long id) {
+        return userRepository.findFirstByIdAndStatusOrderByIdDesc(
+                id, UserStatus.REGISTERED
+        ).orElseThrow(() -> new ApiException(UserErrorCode.USER_NOT_FOUND));
+    }
+    
     public UserEntity login(@NotBlank String email, @NotBlank String password) {
         var userEntity = getUserWithThrow(email, password);
         return userEntity;
