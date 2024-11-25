@@ -30,7 +30,7 @@ public class StoreConverter {
                 .orElseThrow(() -> new ApiException(ErrorCode.NULL_POINT));
     }
     // entity -> response
-    public StoreResponse storeResponse(StoreEntity entity){
+    public StoreResponse toResponse(StoreEntity entity){
         return Optional.ofNullable(entity)
                 .map(it -> {
                     return StoreResponse.builder()

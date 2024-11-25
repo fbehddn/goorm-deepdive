@@ -22,7 +22,7 @@ public class StoreBusiness {
         // req -> entity -> save -> response
         var entity = storeConverter.toEntity(request);
         var newEntity = storeService.register(entity);
-        var response = storeConverter.storeResponse(newEntity);
+        var response = storeConverter.toResponse(newEntity);
         return response;
     }
 
@@ -31,7 +31,7 @@ public class StoreBusiness {
         // entity list -> response list
         var storeList = storeService.searchByCategory(storeCategory); // entity list
         return storeList.stream()
-                .map(storeConverter::storeResponse)
+                .map(storeConverter::toResponse)
                 .collect(Collectors.toList());
     }
 }
