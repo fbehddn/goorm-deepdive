@@ -1,6 +1,7 @@
 package com.delivery.db.storemenu;
 
 import com.delivery.db.BaseEntity;
+import com.delivery.db.storemenu.enums.StoreMenuStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
