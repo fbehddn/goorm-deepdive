@@ -2,8 +2,8 @@ package com.delivery.api.domain.store.controller;
 
 import com.delivery.api.common.api.Api;
 import com.delivery.api.domain.store.business.StoreBusiness;
-import com.delivery.api.domain.store.model.StoreRegisterRequest;
-import com.delivery.api.domain.store.model.StoreResponse;
+import com.delivery.api.domain.store.controller.model.StoreRegisterRequest;
+import com.delivery.api.domain.store.controller.model.StoreResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;

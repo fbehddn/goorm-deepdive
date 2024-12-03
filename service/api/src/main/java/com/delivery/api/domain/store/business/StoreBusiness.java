@@ -2,8 +2,8 @@ package com.delivery.api.domain.store.business;
 
 import com.delivery.api.common.annotation.Business;
 import com.delivery.api.domain.store.converter.StoreConverter;
-import com.delivery.api.domain.store.model.StoreRegisterRequest;
-import com.delivery.api.domain.store.model.StoreResponse;
+import com.delivery.api.domain.store.controller.model.StoreRegisterRequest;
+import com.delivery.api.domain.store.controller.model.StoreResponse;
 import com.delivery.api.domain.store.service.StoreService;
 import com.delivery.db.store.enums.StoreCategory;
 import lombok.RequiredArgsConstructor;
