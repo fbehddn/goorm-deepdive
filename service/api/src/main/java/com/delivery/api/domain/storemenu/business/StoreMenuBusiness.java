@@ -8,6 +8,7 @@ import com.delivery.api.domain.storemenu.service.StoreMenuService;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Business
@@ -33,5 +34,13 @@ public class StoreMenuBusiness {
         var list = storeMenuService.getStoreMenuByStoreId(storeId);
 
         // entity list -> response list 변환
+        return list.stream()
+                .map(storeMenuConverter::toResponse)
+                .collect(Collectors.toList());
+        /*return list.stream()
+                .map( it -> {
+                    return storeMenuConverter.toResponse(it);
+                })
+                .collect(Collectors.toList());*/
     }
 }
